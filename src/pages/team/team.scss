@@ -1,3 +1,11 @@
 page-team {
+    .item-inner, ion-item {
+        border-bottom-color: transparent !important;
+        box-shadow: none !important;
+      }
 
+      .name{
+        color:black;
+        font-weight: bold;
+    }
 }

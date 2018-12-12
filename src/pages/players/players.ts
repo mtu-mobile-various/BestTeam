@@ -1,25 +1,42 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavParams, AlertController } from 'ionic-angular';
+import { Player } from '../../data/player.interface';
+import { PlayerService } from '../../services/players.service';
 
-/**
- * Generated class for the PlayersPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-@IonicPage()
 @Component({
   selector: 'page-players',
   templateUrl: 'players.html',
 })
 export class PlayersPage {
+  playersGroup: {category: string, players: Player[], icon: string}[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private navParams: NavParams, 
+    private alertCtrl: AlertController,
+    private playerService: PlayerService) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PlayersPage');
+  ngOnInit(){
+    this.playersGroup = this.navParams.data;
+  }
+
+  addToTeam(selectedPlayer: Player){
+    const alert = this.alertCtrl.create({
+      title: 'Add to My Team',
+      message: 'Do you want to add this player to your team?',
+      buttons:[
+        {
+          text:'Okay',
+          handler: () => {
+            this.playerService.addPlayer(selectedPlayer);
+          } 
+        },
+        {
+          text: 'Cancel'
+        }
+      ]
+    });
+
+    alert.present();
   }
 
 }

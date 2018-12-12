@@ -10,6 +10,7 @@ import { PlayersPage } from '../pages/players/players';
 import { PositionsPage } from '../pages/positions/positions';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TeamPage } from '../pages/team/team';
+import { PlayerService } from '../services/players.service';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { TeamPage } from '../pages/team/team';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    PlayerService
   ]
 })
 export class AppModule {}
